@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EventBook — Vivez vos événements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark">E</span> Event<span>Book</span></a>
+<nav><a href="#events">Événements</a><a href="#about">À propos</a></nav>
+<div class="nav-actions"><button class="btn btn-light" id="loginOpen">Connexion</button><button class="btn btn-gold" id="registerOpen">Créer un compte</button><button class="btn btn-light hidden" id="logoutBtn">Déconnexion</button></div>
+</header>
+<main>
+<section class="hero"><div class="hero-copy"><p class="eyebrow">DES MOMENTS QUI COMPTENT</p><h1>Chaque événement<br>raconte une <em>histoire.</em></h1><p class="hero-text">Découvrez les meilleurs événements près de chez vous et réservez votre place en quelques clics.</p><a class="btn btn-gold btn-large" href="#events">Explorer les événements <span>→</span></a><div class="hero-note"><span class="dot"></span> Réservation simple · Expérience unique</div></div>
+<div class="hero-art"><div class="hero-photo"></div><div class="gold-stamp">MAKE<br>MEMORIES</div><div class="photo-caption"><span>EVENTBOOK SELECTION</span><b>Vivez l'instant présent.</b></div></div></section>
+<section class="stats"><div><strong>01</strong><span>Explorez</span></div><div><strong>02</strong><span>Choisissez</span></div><div><strong>03</strong><span>Réservez</span></div><p>Votre prochaine expérience commence ici.</p></section>
+<section class="events-section" id="events"><div class="section-head"><div><p class="eyebrow">TROUVEZ VOTRE PROCHAIN RENDEZ-VOUS</p><h2>Événements à découvrir</h2></div><p>Des expériences soigneusement sélectionnées<br>pour tous les goûts.</p></div>
+<div class="filters"><input id="search" placeholder="Rechercher un événement..."><select id="category"><option value="">Toutes les catégories</option><option>Musique</option><option>Technologie</option><option>Culture</option><option>Business</option><option>Sport</option></select><input id="city" placeholder="Ville"></div>
+<div id="eventsGrid" class="event-grid"><p>Chargement des événements...</p></div></section>
+<section class="banner" id="about"><p class="eyebrow">L'EXPÉRIENCE EVENTBOOK</p><h2>Les plus beaux souvenirs<br>commencent par un billet.</h2><p>Une plateforme simple et élégante pour trouver, organiser et réserver vos sorties.</p><a href="#events" class="text-link">Découvrir les événements →</a></section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-mark">E</span> Event<span>Book</span></a><p>© 2026 EventBook. Tous droits réservés.</p><span>Fait pour vivre de beaux moments.</span></footer>
+<div class="modal hidden" id="authModal"><div class="modal-card"><button class="close" id="modalClose">×</button><p class="eyebrow">BIENVENUE CHEZ EVENTBOOK</p><h2 id="authTitle">Connexion</h2><form id="authForm"><div id="nameField" class="hidden"><label>Nom complet</label><input name="name" placeholder="Votre nom"></div><label>Adresse e-mail</label><input name="email" type="email" required placeholder="exemple@email.com"><label>Mot de passe</label><input name="password" type="password" required minlength="6" placeholder="6 caractères minimum"><button class="btn btn-gold btn-large full" id="authSubmit">Se connecter</button></form><p class="form-switch" id="authSwitch">Pas encore de compte ? <a href="#" id="switchAuth">Créer un compte</a></p><p id="authMessage" class="message"></p></div></div>
+<div class="modal hidden" id="eventModal"><div class="modal-card event-detail"><button class="close" id="eventClose">×</button><div id="eventDetail"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body></html>

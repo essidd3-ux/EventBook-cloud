@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventBook - Administration</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body { background:#f8f7f4; }
+    .admin { max-width:1100px; margin:45px auto; padding:20px; }
+    .admin-header { display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap; }
+    .admin h1,.admin h2 { color:#29251f; }
+    .panel { background:white; padding:25px; border-radius:14px; margin:25px 0; box-shadow:0 4px 20px #0000000b; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; }
+    .stat { background:white; padding:22px; border-radius:12px; border:1px solid #eee5d5; }
+    .stat strong { display:block; font-size:28px; color:#b18a42; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .form-grid label { display:block; margin-bottom:6px; }
+    .form-grid input,.form-grid textarea,.form-grid select { width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; }
+    .form-grid textarea { min-height:80px; }
+    .full-width { grid-column:1/-1; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; min-width:600px; }
+    th,td { padding:13px; border-bottom:1px solid #eee; text-align:left; }
+    th { color:#98732f; }
+    .delete-btn { background:#fff0ed; color:#b43d2c; border:0; padding:8px 12px; border-radius:7px; cursor:pointer; }
+    .logout { cursor:pointer; }
+    @media(max-width:600px) { .form-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">E</span> Event<span>Book</span></a>
+    <div class="nav-actions">
+      <button class="btn btn-light logout" id="logoutBtn">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="admin">
+    <div class="admin-header">
+      <div>
+        <p class="eyebrow">ESPACE DE GESTION</p>
+        <h1>Tableau de bord</h1>
+        <p>Bienvenue dans votre espace administrateur.</p>
+      </div>
+      <a class="btn btn-light" href="/">Voir le site</a>
+    </div>
+
+    <section class="cards">
+      <div class="stat">Événements<strong id="eventCount">0</strong></div>
+      <div class="stat">Réservations<strong id="bookingCount">0</strong></div>
+    </section>
+
+    <section class="panel">
+      <h2>Ajouter un événement</h2>
+      <form id="eventForm" class="form-grid">
+        <div><label>Titre *</label><input name="title" required></div>
+        <div><label>Catégorie *</label>
+          <select name="category" required>
+            <option value="">Choisir</option>
+            <option>Musique</option><option>Technologie</option>
+            <option>Culture</option><option>Business</option><option>Sport</option>
+          </select>
+        </div>
+        <div><label>Ville *</label><input name="city" required></div>
+        <div><label>Lieu *</label><input name="venue" required></div>
+        <div><label>Date et heure *</label><input name="event_date" type="datetime-local" required></div>
+        <div><label>Prix (DT) *</label><input name="price" type="number" min="0" step="0.01" required></div>
+        <div><label>Capacité *</label><input name="capacity" type="number" min="1" required></div>
+        <div><label>Image (URL)</label><input name="image_url" type="url"></div>
+        <div class="full-width"><label>Description</label><textarea name="description"></textarea></div>
+        <div class="full-width"><button class="btn btn-gold" type="submit">Ajouter l'événement</button></div>
+      </form>
+      <p id="eventMessage" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Gestion des événements</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Titre</th><th>Ville</th><th>Date</th><th>Prix</th><th>Action</th></tr></thead>
+          <tbody id="eventsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Réservations des utilisateurs</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Client</th><th>Email</th><th>Événement</th><th>Places</th><th>Statut</th></tr></thead>
+          <tbody id="bookingsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>
